@@ -6,12 +6,12 @@ const cors = require('cors');
 const app = express();
 
 // Middleware
+
+app.use(express.json());
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'https://ahsanfast.netlify.app',
   credentials: true
 }));
-app.use(express.json());
-
 // Routes
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/menu', require('./routes/menu'));
