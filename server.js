@@ -16,7 +16,7 @@ app.use(cors({
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/menu', require('./routes/menu'));
 app.use('/api/admin', require('./routes/admin'));
-
+app.use('/api/seed', require('./routes/seed'));
 // Health checks
 app.get('/', (req, res) => res.json({ message: 'BiteRush API running' }));
 app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date() }));
