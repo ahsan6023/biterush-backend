@@ -22,7 +22,7 @@ app.get('/', (req, res) => res.json({ message: 'BiteRush API running' }));
 app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date() }));
 
 // MongoDB Connection
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/biterush';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://itxahsan845_db_user:Khan6023@cluster0.n1xsgdn.mongodb.net/rental_db?appName=Cluster0';
 
 mongoose.connect(MONGO_URI)
   .then(() => {
