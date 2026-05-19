@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const MenuItem = require('../models/MenuItem');
 const Order = require('../models/Order');
-const Admin = require('../models/Admin');
+const Admin = require('../models/admin');
 const jwt = require('jsonwebtoken');
 
 // Secret key for JWT (change this to something random)

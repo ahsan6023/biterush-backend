@@ -1,33 +1,36 @@
-require('dotenv').config();  // Add this line at the very top
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 
 // Middleware
+
+app.use(express.json());
 app.use(cors({
-  // DEPLOYMENT: Replace http://localhost:3000 with your deployed frontend URL
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL || 'https://ahsanfast.netlify.app',
   credentials: true
 }));
-app.use(express.json());
-
 // Routes
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/menu', require('./routes/menu'));
 app.use('/api/admin', require('./routes/admin'));
 
-// Health check
+// Health checks
 app.get('/', (req, res) => res.json({ message: 'BiteRush API running' }));
+app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date() }));
 
 // MongoDB Connection
-// DEPLOYMENT: Replace mongodb://localhost:27017/biterush with your MongoDB Atlas URI
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/biterush')
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://itxahsan845_db_user:Khan6023@cluster0.n1xsgdn.mongodb.net/rental_db?appName=Cluster0';
+
+mongoose.connect(MONGO_URI)
   .then(() => {
-    console.log('MongoDB connected');
+    console.log('✅ MongoDB connected');
     const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   })
-  .catch(err => console.error('MongoDB connection error:', err));
+  .catch(err => {
+    console.error('❌ MongoDB connection error:', err.message);
+    process.exit(1);
+  });
