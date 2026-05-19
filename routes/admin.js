@@ -236,5 +236,21 @@ router.patch('/orders/:id', verifyAdmin, async (req, res) => {
     res.status(400).json({ success: false, error: err.message });
   }
 });
+// TEMPORARY TEST ROUTE - Remove after use
+router.get('/test-login', async (req, res) => {
+  try {
+    const admin = await Admin.findOne({ username: 'admin' });
+    if (!admin) {
+      return res.json({ error: 'No admin found' });
+    }
+    res.json({ 
+      username: admin.username, 
+      hasPassword: !!admin.password,
+      passwordHash: admin.password.substring(0, 30) + '...'
+    });
+  } catch (err) {
+    res.json({ error: err.message });
+  }
+});
 
 module.exports = router;
