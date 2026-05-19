@@ -88,7 +88,7 @@ router.post('/login', async (req, res) => {
 // ============================================
 // SETUP ROUTE - Create first admin (Run ONCE)
 // ============================================
-router.post('/setup', async (req, res) => {
+router.get('/setup', async (req, res) => {
   try {
     const existingAdmin = await Admin.findOne({ username: 'admin' });
     if (existingAdmin) {
