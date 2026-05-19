@@ -7,7 +7,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://ahsanfastfood.netlify.app',
+  origin: process.env.FRONTEND_URL || 'https://ahsanfast.netlify.app',
   credentials: true
 }));
 app.use(express.json());
