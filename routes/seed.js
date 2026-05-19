@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
 
-router.post('/seed-from-backup', async (req, res) => {
+router.get('/seed-from-backup', async (req, res) => {
   try {
     const backupPath = path.join(__dirname, '../menu-data.json');
     const items = JSON.parse(fs.readFileSync(backupPath, 'utf8'));
